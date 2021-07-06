@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Django Channels WebRTC</title>
+</head>
+<body>
+    <div>
+        <label for="username">Username</label><input id="username" />
+        <button id="btn-join">Join</button>
+    </div>
+
+    <div class="main-grid-container">
+        <div id="video-container">
+            <div>
+                <video style="border: black solid 1px;" id="local-video" autoplay playsinline></video>
+            </div>
+            <button id="btn-toggle-audio">
+                Audio Mute
+            </button>
+            <button id="btn-toggle-video">
+                Video Mute
+            </button>
+        </div>
+
+        <div id="chat">
+            <h3>Chat</h3>
+            <div id="messages">
+                <ul id="message-list"></ul>
+            </div>
+            <div>
+                <input id="btn-send-msg" />
+                <button>Send</button>
+            </div>
+            <button id="btn-share-screen">Share Screen</button>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
