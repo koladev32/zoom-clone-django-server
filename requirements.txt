@@ -1,0 +1,3 @@
+channels==3.0.3
+daphne==3.0.2
+Django==3.2.5
