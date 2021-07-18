@@ -84,7 +84,6 @@ btnJoin.addEventListener('click', () => {
     }
 
     let endPoint = wsStart + loc.host + loc.pathname;
-
     webSocket = new WebSocket(endPoint);
 
     webSocket.addEventListener('open', (e) => {

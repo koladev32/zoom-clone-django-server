@@ -17,7 +17,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
             self.room_group_name,
             self.channel_name
         )
-        print("Disconnected!")
 
     async def receive(self, text_data):
         receive_dict = json.loads(text_data)
