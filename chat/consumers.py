@@ -25,7 +25,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
         action = receive_dict['action']
 
         if action in ['new-offer', 'new-answer']:
-            print(receive_dict['message'])
             receiver_channel_name = receive_dict['message']['receiver_channel_name']
 
             receive_dict['message']['receiver_channel_name'] = self.channel_name
