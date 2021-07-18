@@ -2,3 +2,4 @@ channels==3.0.3
 daphne==3.0.2
 Django==3.2.5
 django-cors-headers==3.7.0
+channels-redis==3.3.0
