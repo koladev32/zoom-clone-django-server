@@ -6,7 +6,17 @@ services:
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - ./:/usr/src/app/
+    # depends_on: 
+    #   - redis
+    # environment: 
+    #   - REDIS_HOST=redis  
     ports:
       - 8009:8000
     env_file:
       - ./.env
+#   redis:
+#     image: redis:3.2-alpine
+#     volumes:
+#       - redis_data:/data
+# volumes:  
+#   redis_data:
