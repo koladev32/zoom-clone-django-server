@@ -137,12 +137,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CHANNEL_LAYERS = {
     "default": {
-        "BACKEND": os.getenv('REDIS_BACKEND', 'channels_redis.core.RedisChannelLayer'),
-        "CONFIG": {
-            "hosts": [(os.getenv('REDIS_HOST', "localhost"), os.getenv('REDIS_PORT', 6379))],
-        },
-    },
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
 }
+
 
 
 CORS_ALLOWED_ORIGINS = os.getenv("CORS_ALLOWED_ORIGINS", "http://localhost http://127.0.0.1").split(" ")
