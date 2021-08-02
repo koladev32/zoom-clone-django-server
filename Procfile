@@ -1,2 +1,2 @@
 release: python manage.py migrate --no-input
-web: gunicorn backend.wsgi --log-file -
+web: gunicorn ZoomClone.wsgi --log-file -
