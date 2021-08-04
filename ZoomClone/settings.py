@@ -42,8 +42,11 @@ INSTALLED_APPS = [
     'channels',
     'core',
     'core.chat',
-    'core.room'
+    'core.room',
+    'core.user'
 ]
+
+AUTH_USER_MODEL = 'core_user.User'
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
