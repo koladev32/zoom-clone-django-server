@@ -83,7 +83,7 @@ btnJoin.addEventListener('click', () => {
         wsStart = 'wss://'
     }
 
-    let endPoint = wsStart + loc.host + loc.pathname;
+    let endPoint = wsStart + loc.host + loc.pathname + 'room';
     webSocket = new WebSocket(endPoint);
 
     webSocket.addEventListener('open', (e) => {
