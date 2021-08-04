@@ -28,7 +28,7 @@ class UserManager(BaseUserManager, AbstractManager):
 
 
 class User(AbstractModel, PermissionsMixin, AbstractBaseUser):
-    username = models.CharField(max_length=255, null=False)
+    username = models.CharField(max_length=255, unique=True)
     is_active = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
 
