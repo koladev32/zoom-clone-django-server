@@ -6,6 +6,6 @@ from core.user.serializers import UserSerializer
 # TODO: check if this requires custom permission
 
 class UserViewSet(ModelViewSet):
-    http_method_names = ('post', 'get')
+    http_method_names = ('get')
     permission_classes = (IsAuthenticated,)
     serializer_class = UserSerializer
