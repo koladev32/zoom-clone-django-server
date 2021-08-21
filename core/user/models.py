@@ -15,6 +15,7 @@ class UserManager(BaseUserManager, AbstractManager):
 
         user = self.model(username=username)
         user.set_password(password)
+        user.is_active = True
         user.save()
         return user
 

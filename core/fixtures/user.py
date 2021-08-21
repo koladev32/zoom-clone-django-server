@@ -1,11 +1,8 @@
 from core.user.models import User
-from django.contrib.auth.hashers import make_password
 
 data_user = {
-    "username": "",
-    "is_active": True,
-    "is_superuser": False,
-    "password": make_password("12345")
+    "username": "koladev32",
+    "password": "12345678"
 }
 
 User.objects.create_user(**data_user)
