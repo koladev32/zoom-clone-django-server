@@ -2,8 +2,6 @@ from django.urls import reverse
 from rest_framework.test import APITestCase
 from rest_framework import status
 
-from core.user.models import User
-
 
 class UserTest(APITestCase):
     base_url_room = reverse("core-api:room-list")
