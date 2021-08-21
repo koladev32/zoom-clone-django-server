@@ -21,7 +21,7 @@ class UserViewSet(ModelViewSet):
         if lookup_field_value == 'current':
             obj = self.request.user
         else:
-            obj = User.objects.get_by_public_id(lookup_field_value)
+            obj = User.objects.get_object_by_public_id(lookup_field_value)
 
         self.check_object_permissions(self.request, obj)
 

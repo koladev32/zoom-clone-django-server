@@ -4,7 +4,6 @@ from rest_framework import permissions
 class UserPermission(permissions.BasePermission):
 
     def has_permission(self, request, view):
-
         basename = view.basename
 
         if basename in ['room']:
@@ -12,6 +11,8 @@ class UserPermission(permissions.BasePermission):
                 return view.action in ['create'] and request.user.is_authenticated
             else:
                 return True
+        if basename in ['user']:
+            return True
 
         return False
 
