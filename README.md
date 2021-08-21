@@ -5,7 +5,7 @@
 
 ```bash
 $ git clone https://github.com/koladev32/zoom-clone-django-server.git
-$ cd api-server-django
+$ cd zoom-clone-django-server
 ```
 
 **Create a virtual environment**
@@ -39,8 +39,8 @@ The API server will start using the default port `8000`.
 > Get the code
 
 ```bash
-$ git clone https://github.com/app-generator/api-server-django.git
-$ cd api-server-django
+$ git clone https://github.com/koladev32/zoom-clone-django-server.git
+$ cd zoom-clone-django-server
 ```
 
 > Start the app in Docker
