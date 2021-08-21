@@ -11,6 +11,7 @@ class RegisterSerializer(UserSerializer):
     class Meta:
         model = User
         fields = ['public_id', 'username', 'password', 'is_active', 'created', 'updated']
+        read_only_fields =['is_active']
 
     def create(self, validated_data):
         try:
