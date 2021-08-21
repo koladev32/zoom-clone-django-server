@@ -26,7 +26,12 @@ class RoomSerializer(serializers.ModelSerializer):
         except ObjectDoesNotExist:
             return attrs
 
+    def create(self, validated_data):
+        validated_data['status'] = 'active'
+        room = Room.objects.create(**validated_data)
+        return room
+
     class Meta:
         model = Room
-        fields = ['public_id', 'creator', 'name', 'created', 'updated']
-        read_only_fields = ['public_id']
+        fields = ['public_id', 'creator', 'name', 'created', 'updated', 'status']
+        read_only_fields = ['public_id', 'status']
