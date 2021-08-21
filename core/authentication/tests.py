@@ -20,17 +20,14 @@ class AuthenticationTest(APITestCase):
 
     def test_login(self):
         response = self.client.post(f"{self.base_url_login}", data=self.data_login)
-        print(response.json())
+
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        response_data = response.json()
 
     def test_refresh(self):
         # Login to retrieve token
 
         response = self.client.post(f"{self.base_url_login}", data=self.data_login)
         response_data = response.json()
-
-        print(response.status_code)
 
         refresh = response_data["refresh"]
 
