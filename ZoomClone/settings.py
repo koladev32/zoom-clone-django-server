@@ -15,6 +15,10 @@ from pathlib import Path
 import os
 import datetime
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -101,7 +105,7 @@ DATABASE_CONFIG_GITHUB_WOKRLFOW = {
 
 DATABASE_CONFIG_DATABASE = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql',
+            'ENGINE': os.environ.get("DATABASE_ENGINE", 'django.db.backends.postgresql'),
             'NAME': os.environ.get("DATABASE_NAME", 'zoom'),
             'USER': os.environ.get("DATABASE_USER", 'zoom'),
             'PASSWORD': os.environ.get("DATABASE_PASSWORD", 'ZOOM12345'),
