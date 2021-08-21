@@ -16,7 +16,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
         except ObjectDoesNotExist:
             await self.close()
 
-        self.room_group_name = room.name
+        self.room_group_name = "Test-Room"
         await self.channel_layer.group_add(
             self.room_group_name,
             self.channel_name
