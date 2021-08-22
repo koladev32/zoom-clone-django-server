@@ -27,7 +27,7 @@ class ChatConsumer(AsyncJsonWebsocketConsumer):
         except Exception as e:
             await self.disconnect(45)
 
-        self.room_group_name = await room.name
+        self.room_group_name = room.name
 
         await self.channel_layer.group_add(
             self.room_group_name,
