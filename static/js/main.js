@@ -357,3 +357,45 @@ function removeVideo(video) {
 
     videoWrapper.parentNode.removeChild(videoWrapper)
 }
+
+let btnSendMsg = document.querySelector('#btn-send-msg');
+
+let messageInput = document.querySelector('#msg');
+
+btnSendMsg.addEventListener('click', sendMsgOnClick);
+
+function sendMsgOnClick() {
+    let message = messageInput.value;
+
+    let li = document.createElement('li');
+
+    li.appendChild(document.createTextNode('Me: ' + message));
+
+    messageList.appendChild(li);
+
+    let dataChannels = getDataChannels();
+
+    message = username + ': ' + message;
+
+    dataChannels.forEach(dc => {
+        dc.send(message);
+    });
+
+    messageInput.value = '';
+
+
+}
+
+function getDataChannels() {
+    let dataChannels = [];
+
+    for (let peerUsername in mapPeers) {
+        let peer = mapPeers[peerUsername][1];
+
+        if (peer) {
+            dataChannels.push(peer);
+        }
+    }
+
+    return dataChannels;
+}
