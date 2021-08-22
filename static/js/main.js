@@ -178,7 +178,7 @@ function sendSignal(action, message) {
 }
 
 function createOffer(peerUsername, receiverChannelName){
-    let peer = new RTCPeerConnection(null);
+    let peer = new RTCPeerConnection({iceServers: [{urls: 'stun:35.181.60.57:5349'}]});
 
     addLocalTracks(peer);
 
