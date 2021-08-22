@@ -7,7 +7,6 @@ class RoomManager(AbstractManager):
 
 
 class Room(AbstractModel):
-    creator = models.ForeignKey("core_user.User", on_delete=models.CASCADE, related_name='user_set')
     name = models.CharField(max_length=255)
     status = models.CharField(max_length=255, choices=(('active', 'active'), ('inactive', 'inactive')))
 
