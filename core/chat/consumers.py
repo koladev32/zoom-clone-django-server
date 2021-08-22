@@ -14,6 +14,7 @@ def _get_room_name(public_id):
 
 class ChatConsumer(AsyncJsonWebsocketConsumer):
     async def connect(self, **kwargs):
+        room_name = ''
         url_route = self.scope.get('url_route')
 
         url_route_kwargs = url_route.get('kwargs')
