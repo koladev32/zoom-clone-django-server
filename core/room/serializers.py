@@ -11,7 +11,6 @@ class RoomSerializer(serializers.ModelSerializer):
     def validate(self, attrs):
 
         rooms_count = Room.objects.filter(status='active').count()
-        print(rooms_count)
 
         if rooms_count + 1 > 5:
             raise ValidationError({'room': "There is more than 5 rooms. Wait a moment."})
