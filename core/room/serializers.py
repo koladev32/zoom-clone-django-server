@@ -5,7 +5,7 @@ from core.room.models import Room
 
 
 class RoomSerializer(serializers.ModelSerializer):
-
+    id = serializers.UUIDField(source='public_id', read_only=True, format='hex')
     name = serializers.CharField(max_length=35, min_length=5, required=True)
 
     def validate(self, attrs):
@@ -24,5 +24,5 @@ class RoomSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Room
-        fields = ['public_id', 'name', 'created', 'updated', 'status']
+        fields = ['id', 'name', 'created', 'updated', 'status']
         read_only_fields = ['public_id', 'status']
