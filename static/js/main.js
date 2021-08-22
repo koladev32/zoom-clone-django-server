@@ -8,9 +8,12 @@ let mapPeers = {};
 console.log(mapPeers)
 
 let usernameInput = document.querySelector('#username');
+let roomIdInput = document.querySelector('#roomId')
 let btnJoin = document.querySelector('#btn-join');
 
 let username;
+
+let roomId;
 
 let webSocket;
 
@@ -58,16 +61,18 @@ function webSocketOnMessage(event) {
 
 btnJoin.addEventListener('click', () => {
     username = usernameInput.value;
-
-    console.log(username)
-
-    if( username === '') {
+    roomId = roomIdInput.value;
+    if( username === '' || roomId === '') {
         return;
     }
 
     usernameInput.value = '';
     usernameInput.disabled = true;
     usernameInput.style.visibility = 'hidden';
+
+    roomIdInput.value = '';
+    roomIdInput.disabled = true;
+    roomIdInput.style.visibility = 'hidden';
 
     btnJoin.disabled = true;
     btnJoin.style.visibility = 'hidden';
@@ -83,7 +88,7 @@ btnJoin.addEventListener('click', () => {
         wsStart = 'wss://'
     }
 
-    let endPoint = wsStart + loc.host + loc.pathname + 'room';
+    let endPoint = wsStart + loc.host + loc.pathname + 'room/506abf286f17488786237f2d8dc009ca/';
     webSocket = new WebSocket(endPoint);
 
     webSocket.addEventListener('open', (e) => {
