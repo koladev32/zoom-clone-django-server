@@ -1,5 +1,3 @@
-from django.core.exceptions import ObjectDoesNotExist
-
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
@@ -13,9 +11,12 @@ class RoomSerializer(serializers.ModelSerializer):
     def validate(self, attrs):
 
         rooms_count = Room.objects.filter(status='active').count()
+        print(rooms_count)
 
         if rooms_count + 1 > 5:
             raise ValidationError({'room': "There is more than 5 rooms. Wait a moment."})
+
+        return attrs
 
     def create(self, validated_data):
         validated_data['status'] = 'active'
@@ -24,5 +25,5 @@ class RoomSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Room
-        fields = ['public_id', 'creator', 'name', 'created', 'updated', 'status']
+        fields = ['public_id', 'name', 'created', 'updated', 'status']
         read_only_fields = ['public_id', 'status']
