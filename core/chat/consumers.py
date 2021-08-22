@@ -5,11 +5,9 @@ import json
 from core.room.models import Room
 
 
-def _get_room_name(public_id):
+def _get_room(public_id):
 
-    room = Room.objects.get_object_by_public_id(public_id)
-
-    return room.name
+    return Room.objects.get_object_by_public_id(public_id)
 
 
 class ChatConsumer(AsyncJsonWebsocketConsumer):
@@ -22,14 +20,14 @@ class ChatConsumer(AsyncJsonWebsocketConsumer):
         room_id = url_route_kwargs.get('room_id')
 
         try:
-            room_name = await sync_to_async(_get_room_name, thread_sensitive=True)(public_id=room_id)
-            if room_name is None:
-                await self.close()
+            room = await sync_to_async(_get_room, thread_sensitive=True)(public_id=room_id)
+            if room is None:
+                await self.disconnect(45)
 
         except Exception as e:
-            await self.close()
+            await self.disconnect(45)
 
-        self.room_group_name = room_name
+        self.room_group_name = await room.name
 
         await self.channel_layer.group_add(
             self.room_group_name,
