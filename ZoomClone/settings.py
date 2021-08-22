@@ -161,11 +161,6 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CHANNEL_LAYERS = {
-    "default": {
-        "BACKEND": "channels.layers.InMemoryChannelLayer"
-    }
-}
 
 # ##################################################################### #
 # ################### CORS              ############################### #
@@ -184,7 +179,22 @@ REST_FRAMEWORK = {
     )
 }
 
-
-
 TESTING = False
 TEST_RUNNER = "core.xlibs.testing.CoreTestRunner"
+
+# ##################################################################### #
+# ################### REDIS                      ###################### #
+# ##################################################################### #
+
+REDIS_HOST = os.environ.get('REDIS_HOST','localhost')
+REDIS_PORT = os.environ.get('REDIS_PORT', 6379)
+
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": os.environ.get('CHANNEL_LAYERS_BACKEND', "channels_redis.core.RedisChannelLayer"),
+        "CONFIG": {
+            "hosts": [(REDIS_HOST, REDIS_PORT)],
+        },
+    }
+}
