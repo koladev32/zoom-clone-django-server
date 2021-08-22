@@ -2,7 +2,7 @@ from django.db import models
 import uuid
 
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
-from django.http import Http404
+
 
 
 class AbstractManager(models.Manager):
