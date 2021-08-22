@@ -1,34 +1,14 @@
-from django.core.exceptions import ObjectDoesNotExist
-from channels.generic.websocket import AsyncWebsocketConsumer, AsyncJsonWebsocketConsumer
-from asgiref.sync import sync_to_async
+from channels.generic.websocket import AsyncJsonWebsocketConsumer
 import json
 from core.room.models import Room
 
 
-def _get_room(public_id):
-
-    return Room.objects.get_object_by_public_id(public_id)
-
-
 class ChatConsumer(AsyncJsonWebsocketConsumer):
     async def connect(self, **kwargs):
-        room_name = ''
-        url_route = self.scope.get('url_route')
+        self.room_name = self.scope['url_route']['kwargs']['room_id']
+        self.room_group_name = self.room_name
 
-        url_route_kwargs = url_route.get('kwargs')
-
-        room_id = url_route_kwargs.get('room_id')
-
-        try:
-            room = await sync_to_async(_get_room, thread_sensitive=True)(public_id=room_id)
-            if room is None:
-                await self.disconnect(45)
-
-        except Exception as e:
-            await self.disconnect(45)
-
-        self.room_group_name = room.name
-
+        # Join room group
         await self.channel_layer.group_add(
             self.room_group_name,
             self.channel_name
