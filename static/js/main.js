@@ -1,21 +1,5 @@
 console.log("Working.")
 
-var pcConfig = {
-    'iceServers': [
-        {
-            'urls': ['stun:35.180.71.59:3478'],
-            'username': 'test',
-            'credential': 'test123',
-            'credentialType': 'password',
-        },
-        {
-            'urls': ['turn:35.180.71.59:3478'],
-            'username': 'test',
-            'credential': 'test123',
-            'credentialType': 'password',
-        }
-    ]
-};
 
 const NEW_PEER = 'new-peer';
 
@@ -194,7 +178,7 @@ function sendSignal(action, message) {
 }
 
 function createOffer(peerUsername, receiverChannelName){
-    let peer = new RTCPeerConnection({iceServers: pcConfig.iceServers});
+    let peer = new RTCPeerConnection({iceServers: [{urls: 'stun:35.181.60.57:5349'}]});
 
     addLocalTracks(peer);
 
@@ -249,10 +233,8 @@ function createOffer(peerUsername, receiverChannelName){
     })
 }
 
-
-
 function createAnswer(offer, peerUsername, receiverChannelName) {
-    let peer = new RTCPeerConnection({iceServers: pcConfig.iceServers});
+    let peer = new RTCPeerConnection(null);
 
     addLocalTracks(peer);
 
