@@ -89,30 +89,28 @@ ASGI_APPLICATION = 'ZoomClone.asgi.application'
 
 
 DATABASE_CONFIG_GITHUB_WOKRLFOW = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'github_actions',
-            'USER': 'postgres',
-            'PASSWORD': 'postgres',
-            'HOST': '127.0.0.1',
-            'PORT': '5432',
-        }
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'github_actions',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
-
+}
 
 DATABASE_CONFIG_DATABASE = {
-        'default': {
-            'ENGINE': os.environ.get("DATABASE_ENGINE", 'django.db.backends.postgresql'),
-            'NAME': os.environ.get("DATABASE_NAME", 'zoom'),
-            'USER': os.environ.get("DATABASE_USER", 'zoom'),
-            'PASSWORD': os.environ.get("DATABASE_PASSWORD", 'ZOOM12345'),
-            'HOST': os.environ.get("DATABASE_HOST", '127.0.0.1'),
-            'PORT': os.environ.get("DATABASE_PORT", '5432'),
-        }
+    'default': {
+        'ENGINE': os.environ.get("DATABASE_ENGINE", 'django.db.backends.postgresql'),
+        'NAME': os.environ.get("DATABASE_NAME", 'zoom'),
+        'USER': os.environ.get("DATABASE_USER", 'zoom'),
+        'PASSWORD': os.environ.get("DATABASE_PASSWORD", 'ZOOM12345'),
+        'HOST': os.environ.get("DATABASE_HOST", '127.0.0.1'),
+        'PORT': os.environ.get("DATABASE_PORT", '5432'),
     }
+}
 
 DATABASES = DATABASE_CONFIG_GITHUB_WOKRLFOW if os.environ.get('GITHUB_WORKFLOW') else DATABASE_CONFIG_DATABASE
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -161,7 +159,6 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
 # ##################################################################### #
 # ################### CORS              ############################### #
 # ##################################################################### #
@@ -186,15 +183,13 @@ TEST_RUNNER = "core.xlibs.testing.CoreTestRunner"
 # ################### REDIS                      ###################### #
 # ##################################################################### #
 
-REDIS_HOST = os.environ.get('REDIS_HOST','localhost')
-REDIS_PORT = os.environ.get('REDIS_PORT', 6379)
-
+REDIS_HOST = os.environ.get('REDIS_HOST', 'redis://localhost:6379')
 
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": os.environ.get('CHANNEL_LAYERS_BACKEND', "channels_redis.core.RedisChannelLayer"),
         "CONFIG": {
-            "hosts": [(REDIS_HOST, REDIS_PORT)],
+            "hosts": [REDIS_HOST],
         },
     }
 }
